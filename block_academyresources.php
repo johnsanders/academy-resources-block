@@ -64,7 +64,7 @@ class block_academyresources extends block_base
 			$itemsContent .= $this->create_item($item);
 		}
 		$content = "
-			<section class='block'>
+			<section class='block' style='margin: 0 -5px; padding: 0;'>
 				<div class='header'>
 					<div class='title'>
 						<h2 class='d-inline'>
@@ -85,10 +85,7 @@ class block_academyresources extends block_base
 	}
 	function get_content()
 	{
-		global $DB;
-		if ($this->content !== NULL) {
-			return $this->content;
-		}
+		if ($this->content !== NULL) return $this->content;
 		$content = '';
 		$showVault = get_config('block_academyresources', 'showvault');
 		$showNewsource = get_config('block_academyresources', 'shownewsource');
