@@ -46,7 +46,7 @@ class block_academyresources extends block_base
 				<div class='card-body course-info-container'>
 					<div class='d-flex align-items-start'>
 						<div class='w-100'>
-							<a class='aalink coursename mr-2 href='$linkUrl'>
+							<a class='aalink coursename mr-2 href='$linkUrl' style='font-size: 1.2em'>
 								<span class='multiline'>
 									$title
 								</span>
