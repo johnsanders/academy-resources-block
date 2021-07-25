@@ -64,7 +64,7 @@ class block_academyresources extends block_base
 			$itemsContent .= $this->create_item($item);
 		}
 		$content = "
-			<section class='block' style='margin: 0 -5px; padding: 0;'>
+			<section class='block' style='margin: 0 -5px 3em -5px; padding: 0;'>
 				<div class='header'>
 					<div class='title'>
 						<h2 class='d-inline'>

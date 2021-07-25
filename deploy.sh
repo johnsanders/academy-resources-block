@@ -2,7 +2,7 @@
 
 cd ../
 
-/usr/bin/tar \
+COPYFILE_DISABLE=1 /usr/bin/tar \
 	--exclude='./.git*' \
 	--exclude='./deploy.sh' \
 	--exclude='*.DS_Store' \
