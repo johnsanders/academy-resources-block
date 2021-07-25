@@ -4,6 +4,7 @@ cd ../
 
 /usr/bin/tar \
 	--exclude='./.git*' \
+	--exclude='./deploy.sh' \
 	--exclude='*.DS_Store' \
 	-czvf academyresources.tar.gz ./academyresources
 /usr/bin/scp -i "~/cnn-academy-frankfurt.pem" ./academyresources.tar.gz bitnami@ec2-3-67-111-127.eu-central-1.compute.amazonaws.com:~/
