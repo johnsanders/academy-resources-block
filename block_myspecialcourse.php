@@ -1,11 +1,12 @@
 <?php
+defined('MOODLE_INTERNAL') || die();
+require_once('/bitnami/moodle/config.php');
 
-class block_academyresources extends block_base
+class block_myspecialcourse extends block_base
 {
-
 	function init()
 	{
-		$this->title = get_string('pluginname', 'block_academyresources');
+		$this->title = get_string('myresources', 'block_myspecialcourse');
 	}
 	function has_config()
 	{
@@ -17,7 +18,7 @@ class block_academyresources extends block_base
 	}
 	public function hide_header()
 	{
-		return true;
+		return false;
 	}
 	public function select_random($num, $arr)
 	{
@@ -85,22 +86,27 @@ class block_academyresources extends block_base
 	}
 	function get_content()
 	{
+		global $CFG, $DB;
+		require_once($CFG->dirroot.'/course/lib.php');
 		if ($this->content !== NULL) return $this->content;
-		$content = '';
-		$showVault = get_config('block_academyresources', 'showvault');
-		$showNewsource = get_config('block_academyresources', 'shownewsource');
-		$dataRaw = file_get_contents('https://cnn-academy-resources.s3.eu-central-1.amazonaws.com/externalData.json');
-		$data = json_decode($dataRaw);
-		if ($showVault) {
-			$randomItems = $this->select_random(4, $data->vault);
-			$content .= $this->create_row("From the CNN Archives", $randomItems);
+		$courseId = get_config('block_myspecialcourse', 'courseid');
+		$course = $DB->get_record('course', array('id' => $courseId));
+		$modinfo = get_fast_modinfo($course);
+		foreach ($modinfo->sections[1] as $cmid) {
+			$cm = $modinfo->cms[$cmid];
+			// $cminfo = \cm_info::create($cm);
+			print_r($cm->get_formatted_name().'fdsaaaa');
 		}
-		if ($showNewsource) {
-			$randomItems = $this->select_random(4, $data->newsourceBlog);
-			$content .= $this->create_row("CNN Newsource Industry Insights", $randomItems);
-		}
+		$content = 'woo212jj-' . $courseId . '-§oo' . $course->fullname . '-----';
 		$this->content = new stdClass;
 		$this->content->text = $content;
 		return $this->content;
+
+		/*
+		$content .= $this->create_row("CNN Newsource Industry Insights", $randomItems);
+		$this->content = new stdClass;
+		$this->content->text = $content;
+		return $this->content;
+		*/
 	}
 }
